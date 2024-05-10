@@ -110,7 +110,7 @@ public:
         m_area = area;
     }
     void get_area() {
-        cout << "Square:" << m_area << endl;
+        cout << "Area:" << m_area << endl;
     }
 };
 
@@ -202,6 +202,23 @@ public:
         m_rules = rules;
     }
 
+    Game(const Game& other) {
+        m_players = other.m_players;
+        m_score = other.m_score;
+        m_timer = other.m_timer;
+        m_rules = other.m_rules;
+    }
+
+    Game& operator=(const Game& other) {
+        if (this != &other) {
+            m_players = other.m_players;
+            m_score = other.m_score;
+            m_timer = other.m_timer;
+            m_rules = other.m_rules;
+        }
+        return *this;
+    }
+
     ~Game() {
         cout << "Deleting Game:" << endl;
     }
@@ -248,6 +265,15 @@ public:
     Football(int players, int score, float timer, string rules, string team1, string team2) : Game(players, score, timer, rules) {
         m_team1 = team1;
         m_team2 = team2;
+    }
+
+    Football& operator=(const Football& other) {
+        if (this != &other) {
+            Game::operator=(other);
+            m_team1 = other.m_team1;
+            m_team2 = other.m_team2;
+        }
+        return *this;
     }
 
 
